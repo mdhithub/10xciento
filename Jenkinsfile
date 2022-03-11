@@ -18,5 +18,11 @@ pipeline {
                 sh "mvn test"
             }
         }
+        
+        stage('Test Newman') {
+            steps {
+                sh "newman run mindicadorTarea.cl.postman_collection.json -n 5"
+            }
+        }
     }
 }
