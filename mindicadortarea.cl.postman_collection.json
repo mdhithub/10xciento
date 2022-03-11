@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "9f238915-c6fa-438c-88eb-5aa968bbb2b8",
+		"name": "mindicadorTarea.cl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Uf",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1500ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(1500);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1.7.0\");",
+							"});",
+							"",
+							"pm.test(\"Indicador es UF\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.codigo).to.eql(\"uf\");  ",
+							"});",
+							"",
+							"",
+							"pm.test(\"Content-Type header is present\", () => {",
+							"  pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mindicador.cl/api/uf",
+					"protocol": "https",
+					"host": [
+						"mindicador",
+						"cl"
+					],
+					"path": [
+						"api",
+						"uf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dolar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 5000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(5000);",
+							"});",
+							"",
+							"pm.test(\"Moneda es Dólar\", () => {",
+							"  const responseJson = pm.response.json();",
+							"  pm.expect(responseJson.nombre).to.eql(\"Dólar observado\");",
+							"  pm.expect(responseJson.codigo).to.eql(\"dolar\");",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", () => {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is application/json\", () => {",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mindicador.cl/api/dolar",
+					"protocol": "https",
+					"host": [
+						"mindicador",
+						"cl"
+					],
+					"path": [
+						"api",
+						"dolar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
